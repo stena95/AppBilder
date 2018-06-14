@@ -50,7 +50,7 @@ document.addEventListener('deviceready', function() {
 
   	});
 
-    document.addEventListener("deviceorientation", function(event){
+    window.addEventListener("deviceorientation", function(event){
       //process event.gamma;
       var bewegung = event.gamma;
       if (bewegung<5)$('#bilder').css({left:(bewegung*25)});
