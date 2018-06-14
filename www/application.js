@@ -52,8 +52,8 @@ document.addEventListener('deviceready', function() {
 
     document.addEventListener("deviceorientation", function(event){
       //process event.gamma;
-      if ((event.gamma)<5)$('#bilder').css({left:event.gamma*25});
-  		if (event.gamma>5)$('#bilder').css({right:-event.gamma*25});
+      if ((event.gamma)<5)$('#bilder').css({left:((event.gamma)*25)});
+  		if (event.gamma>5)$('#bilder').css({right:(-(event.gamma)*25)});
     }, true);
 
   	$(document).on('touchmove', '#bilder', function(event){
