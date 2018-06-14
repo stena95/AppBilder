@@ -10,7 +10,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
-
+    <plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2" />
     <platform name="android">
         <icon src="www/icon.png" />
     </platform>

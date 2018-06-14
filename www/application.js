@@ -2,6 +2,7 @@ document.addEventListener('deviceready', function() {
     // erst jetzt ist APP geladen und ready um was zu tun!
     var bilder = ['das-paradies-fuer-wintersportler.jpg','endlos-weite-schwuenge-ueber-perfekt-praeparierte-pisten-ziehen.jpg','erlebnishotel-fendels-familienhit.jpg','fruehlings-special-top-of-tyrol.jpg','hotel-tia-monte-nahe-am-gletscher.jpg','langlaufen-osttirol.jpeg','open-faces-freeride-series-in-kappl.jpg','psst-freeride-geheimtipp-ischgl-relax-if-you-can.jpg','schloss-matzen-skigebiet.jpg','schneebericht-wilder-kaiser-brixtental.jpeg','skigebiet-venet.jpeg'];
   	var aktuell = 0;
+    var ton = document.getElementById('audio');
 
   	var showImage = function( i ) {
   		aktuell += 1;
@@ -49,18 +50,25 @@ document.addEventListener('deviceready', function() {
 
   	});
 
-  	// $(document).on('mousemove', '#bilder', function(event){
-  	// 	if ( downX == 0) return;
-  	// 	var diffX = downX - event.originalEvent.clientX;
-  	// 	if (diffX<0)$('#bilder').css({left:diffX});
-  	// 	if (diffX>0)$('#bilder').css({right:-diffX});
-  	// });
+    document.addEventListener("deviceorientation", function(event){
+      //process event.gamma;
+      if ((event.gamma)<5)$('#bilder').css({left:event.gamma*25});
+  		if (event.gamma>5)$('#bilder').css({right:-event.gamma*25});
+    }, true);
+
+  	$(document).on('touchmove', '#bilder', function(event){
+  		if ( downX == 0) return;
+  		var diffX = downX - event.changedTouches[0].clientX;
+  		if (diffX<0)$('#bilder').css({left:diffX});
+  		if (diffX>0)$('#bilder').css({right:-diffX});
+  	});
 
   	$(document).on('touchend', '#bilder', function(event){
   		var diffX = downX - event.changedTouches[0].clientX;
   		if (diffX < -100){showImage(1);}
   		if (diffX > 100){showImage(-1);}
   		downX =0;
+      ton.play();
   	});
 
 
